@@ -1,24 +1,9 @@
-// const Discord = require('discord.js');
-// const { Client, Intents } = require('discord.js');
 
 // const myIntents = new Intents();
 // myIntents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES);
 
 // const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-// const client = new Discord.Client();
 
-// // discord.js import
-// const Discord = require('discord.js');
-// // node-fetch for making HTTP requests
-// const fetch = require('node-fetch');
-
-// // initialize client
-// const client = new Discord.Client();
-
-
-// client.once('ready', () => {
-//     console.log('your boy is online');
-// })
 
 // pogged out of my seat
 
