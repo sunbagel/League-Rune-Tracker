@@ -26,6 +26,9 @@
 const { Client, Intents } = require('discord.js');
 // const { token } = require('./config.json');
 
+const dotenv = require('dovenv');
+dotenv.config();
+
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -38,7 +41,7 @@ client.once('ready', () => {
 // client.login(token);
 
 
-client.login('ODgzNzgxOTk2ODY0NzUzNjg1.YTO8Hw.7wfwuUVAVG9oseYaBfA4orYV_6o');
+client.login(process.env.TOKEN);
 
 
 
