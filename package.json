@@ -11,5 +11,16 @@
   "dependencies": {
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunbagel/DiscordBotTest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sunbagel/DiscordBotTest/issues"
+  },
+  "homepage": "https://github.com/sunbagel/DiscordBotTest#readme"
 }

@@ -20,14 +20,15 @@
 //     console.log('your boy is online');
 // })
 
-//pogged out of my seat
+// pogged out of my seat
 
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
 // const { token } = require('./config.json');
 
-const dotenv = require('dovenv');
+const dotenv = require('dotenv');
 dotenv.config();
+
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -37,22 +38,12 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
+// console.log(token);
 // Login to Discord with your client's token
 // client.login(token);
 
-
-client.login(process.env.TOKEN);
-
-
-
-
-
-
-
-
-
-
-
+const token = process.env.TOKEN;
+client.login(token);
 
 
 // // discord.js import
