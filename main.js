@@ -1,33 +1,58 @@
-
+// fs is node's native file system
+const fs = require('fs');
+const { Client, Collection, Intents } = require('discord.js');
+// const { token } = require('./config.json');
 // const myIntents = new Intents();
 // myIntents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES);
 
 // const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-
-// pogged out of my seat
-
-// Require the necessary discord.js classes
-const { Client, Intents } = require('discord.js');
-// const { token } = require('./config.json');
-
 const dotenv = require('dotenv');
 dotenv.config();
+const token = process.env.TOKEN;
+const clientID = process.env.clientID;
+const guildID = process.env.guildID;
 
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+//create collection of client commands
+client.commands = new Collection();
+
+//returns array of all file names in directory
+//filters all non .js files
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
+	client.commands.set(command.data.name, command);
+}
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
     console.log('Ready!');
 });
 
-// console.log(token);
-// Login to Discord with your client's token
-// client.login(token);
+//client creates interaction
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
 
-const token = process.env.TOKEN;
+    //fetch command in collection with interaction name, assign it to variable command
+	const command = client.commands.get(interaction.commandName);
+
+	if (!command) return;
+
+    //execute command, parse interaction variable
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+	}
+});
+
 client.login(token);
 
 
